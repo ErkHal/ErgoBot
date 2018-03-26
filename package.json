@@ -1,0 +1,18 @@
+{
+  "name": "safkabot",
+  "version": "0.9.0",
+  "description": "Discord bot for displaying school lunch menus",
+  "main": "bot.js",
+  "scripts": {
+    "test": "test"
+  },
+  "keywords": [
+    "Discord"
+  ],
+  "author": "Erkki Halinen",
+  "license": "WTFPL",
+  "dependencies": {
+    "discord.js": "^11.3.2",
+    "node-fetch": "^2.1.2"
+  }
+}
