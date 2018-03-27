@@ -1,4 +1,4 @@
-# SafkaBot
+# ErgoBot
 Discord bot that fetches the Uni/UAS lunch menus.
 
 So far only fetches menus from a single campus, but I'm adding more functionalities when I have the time and interest.
