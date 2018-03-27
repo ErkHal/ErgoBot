@@ -6,6 +6,7 @@ I'll keep adding functionalities when I have the time and resources
 Functionalities so far (PREFIX symbol needs to appended in front of the command):
  - ```safkaa``` Fetches cafeteria lunch menus at my campus
  - ```marco``` I bet you know what the bot will answer to this one
+ - ```pizza {amount}``` Randomizes the amount of pizza toppings you want
 
 ## Installation
 Clone the repository, navigate to root directory of the repo.

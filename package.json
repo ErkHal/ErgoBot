@@ -2,7 +2,7 @@
   "name": "ErgoBot",
   "version": "0.9.0",
   "description": "Discord bot with few functionalities",
-  "main": "bot.js",
+  "main": "ErgoBot.js",
   "scripts": {
     "test": "test"
   },

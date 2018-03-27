@@ -1,7 +1,7 @@
 const fetch = require('node-fetch');
 
 module.exports = {
-  
+
   getTodaysMenu : () => {
     return new Promise(function(resolve, reject) {
 
