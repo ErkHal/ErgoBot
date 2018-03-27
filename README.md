@@ -4,7 +4,7 @@ Discord bot written for my own server.
 I'll keep adding functionalities when I have the time and resources
 
 Functionalities so far:
- - Fetching school cafeteria lunch menus
+ - ```!safkaa``` Fetches cafeteria lunch menus at my campus
 
 ## Installation
 Clone the repository, navigate to root directory of the repo.
@@ -26,6 +26,3 @@ After this, you should be able to run the app from the command line with the com
 ```
   node bot.js
 ```
-
-## Usage
-When you type ```!safkaa```(food in Finnish) into a text channel, the bot will fetch you some lunch menus.
