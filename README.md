@@ -3,19 +3,23 @@ Discord bot written for my own server.
 
 I'll keep adding functionalities when I have the time and resources
 
-Functionalities so far:
- - ```!safkaa``` Fetches cafeteria lunch menus at my campus
+Functionalities so far (PREFIX symbol needs to appended in front of the command):
+ - ```safkaa``` Fetches cafeteria lunch menus at my campus
+ - ```marco``` I bet you know what the bot will answer to this one
 
 ## Installation
 Clone the repository, navigate to root directory of the repo.
 
-Create ```auth.json``` file and paste this template to it:
+Create ```config.json``` file and paste this template to it:
 ```
   {
-    token: {TOKEN}
+    "TOKEN": {TOKEN},
+    "PREFIX": {PREFIX}
   }
 ```
 Replace the {TOKEN} with the Token the Discord Developer Portal provides you with.
+Change {PREFIX} to the prefix you want your commands to be preceded with, for example
+"!" or "~"
 
 Then, open command line and type:
 ```
