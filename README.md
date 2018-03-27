@@ -1,7 +1,10 @@
 # ErgoBot
-Discord bot that fetches the Uni/UAS lunch menus.
+Discord bot written for my own server.
 
-So far only fetches menus from a single campus, but I'm adding more functionalities when I have the time and interest.
+I'll keep adding functionalities when I have the time and resources
+
+Functionalities so far:
+ - Fetching school cafeteria lunch menus
 
 ## Installation
 Clone the repository, navigate to root directory of the repo.
