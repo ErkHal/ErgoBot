@@ -1,4 +1,4 @@
-let pizzaUtils = require('../utils/pizzaUtils');
+let pizza = require('../utils/pizza');
 
 module.exports = {
 
@@ -11,7 +11,7 @@ module.exports = {
 
         if(intAmount <= 30 && intAmount > 0) {
           for(let i = 0; i < intAmount; i++) {
-            pizzaToppings.push(pizzaUtils.toppings[Math.floor(Math.random() * 10)]);
+            pizzaToppings.push(pizza.toppings[Math.floor(Math.random() * 10)]);
           }
 
           resolve(pizzaToppings);
@@ -23,16 +23,23 @@ module.exports = {
               Jos haluat lisätä lisää erilaisia täytteitä, kirjoita käskyn perään
               lisää ja sitten täytteen nimi.`);
           }
-
+          //Add more toppings
           if(toppingsAmount[1] === 'lisää' && toppingsAmount.length >= 3) {
-            //pizzaUtils.addTopping(toppingsAmount[2]);
-            resolve("Ei oo viel lisätty tää toiminto");
-
+            fs.readFile('../utils/pizza.json', 'utf8', function readFileCallback(err, data){
+              if (err){
+                  console.log(err);
+                  reject("Eipä onnistunu");
+              } else {
+              obj = JSON.parse(data); //now its an object
+              obj.toppings.push(toppingsAmount[2]); //add some data
+              json = JSON.stringify(obj); //convert it back to json
+              fs.writeFile('pizza.json', json, 'utf8', callback); // write it back
+              resolve("Täyte lisätty'd")
+            }});
           } else {
             reject('Mene töihin tai kirjota help komennon perään');
           }
         }
-
       } catch(err) {
         console.log(err);
         console.log(toppingsAmount[1]);
