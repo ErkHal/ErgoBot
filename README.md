@@ -11,7 +11,10 @@ Functionalities so far (PREFIX symbol needs to appended in front of the command)
                           searchword, if searchword is omitted, gets a completely
                           random GIF
 
-## Installation
+## Installation & How To Run
+ - This bot requires that you have Node.js installed on your computer or on your server
+ 
+### Installation
 Clone the repository, navigate to root directory of the repo.
 
 Create ```config.json``` file and paste this template to it:
@@ -33,10 +36,19 @@ Then, open command line and type:
 
 After this, you should be able to run the app from the command line with the command
 ```
-  node bot.js
+  node ErgoBot.js
+```
+### Running on a server
+You can use Forever.js to make the bot run without being logged in. Just install it on your server with
+```
+ npm install -g forever
+```
+and then navigate to root folder of the repo and run
+```
+ forever start ErgoBot.js
 ```
 
-### Notes about usage
+## Tips
 You can change the randomized pizza toppings from ```utils/pizzaToppings.json```
 I am planning to add functionality to add different toppings from discord, but
 it's not implemented yet.
