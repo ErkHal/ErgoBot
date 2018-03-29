@@ -1,9 +1,19 @@
-const menuFetcher = require('../utils/MenuFetcher.js');
+const dataFetcher = require('../utils/dataFetcher.js');
 
 module.exports = {
   buildMenu : () => {
     return new Promise(function(resolve, reject) {
-      menuFetcher.getTodaysMenu()
+
+      //Get current date
+      const today = new Date();
+
+      const lunchURL =
+       "https://www.sodexo.fi/ruokalistat/output/daily_json/16435/"
+        + today.getFullYear() + "/" + (today.getMonth() + 1) + "/"
+        + today.getDate() + "/fi"
+        
+      //Fetch lunch menu
+      dataFetcher.fetchData(lunchURL)
         .then(( result ) => {
             let menu = `
               \:stew: Tänään tarjolla @ ${result.meta.ref_title}  \:salad:

@@ -2,6 +2,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 const lunchMenu = require('./commands/lunchMenu');
 const pizzaGenerator = require('./commands/pizzaGenerator');
+const gifs = require('./commands/gifs');
 
 const { TOKEN, PREFIX } = require('./config');
 
@@ -11,29 +12,43 @@ client.on('ready', () => {
 
 client.on('message', msg => {
 
-  // Get lunch menu for the cafeteria
-  if (msg.content === (PREFIX + 'safkaa')) {
+  const message = msg.content.split(" ");
+
+  switch (message[0]) {
+
+    // Get lunch menu for the cafeteria
+    case PREFIX + 'safkaa':
       lunchMenu.buildMenu().then(( foodz ) => {
         msg.channel.send(foodz);
       })
-    }
+      break;
 
-  // ( ͡° ͜ʖ ͡°)
-  if (msg.content === (PREFIX + 'marco')) {
-    msg.reply('Polo');
-  }
+    // ( ͡° ͜ʖ ͡°)
+    case PREFIX + 'marco':
+      msg.reply('Polo');
+      break;
 
-  // Return pizza toppings for the user
-  if(msg.content.split(" ")[0] === (PREFIX + 'pizza')) {
-    pizzaGenerator.getPizza(msg.content.split(" "))
-      .then(( result ) => {
-        msg.reply(result);
-    }).catch((err) => { msg.reply(err) });
+    //Gets randomized pizza toppings
+    case PREFIX + 'pizza':
+      pizzaGenerator.getPizza(msg.content.split(" "))
+        .then(( result ) => {
+          msg.reply(result);
+      }).catch((err) => { msg.reply(err) });
+      break;
+
+    //Gets a random GIF either with optional searchword
+    case PREFIX + 'gif':
+       gifs.getGif(message[1])
+        .then(( gifJSON ) => {
+          msg.channel.send(gifJSON.data.embed_url);
+        }).catch((err) => {
+          console.log(err);
+          msg.channel.send('Nyt meni joku vituiks');
+        });
+      break;
+    default:
+
   }
 });
 
 client.login(TOKEN);
-
-//------------ BOT FUNCTIONS ---------------
-
-//Builds the menu from fetched data

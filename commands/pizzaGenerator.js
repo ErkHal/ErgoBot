@@ -1,4 +1,4 @@
-let pizzaUtils = require('../utils/pizzaUtils');
+const pizza = require('../utils/pizzaToppings');
 
 module.exports = {
 
@@ -7,14 +7,14 @@ module.exports = {
       try {
         const intAmount = parseInt(toppingsAmount[1]);
 
-        let pizzaToppings = [];
+        let randomizedToppings = [];
 
         if(intAmount <= 30 && intAmount > 0) {
           for(let i = 0; i < intAmount; i++) {
-            pizzaToppings.push(pizzaUtils.toppings[Math.floor(Math.random() * 10)]);
+            randomizedToppings.push(pizza.toppings[Math.floor(Math.random() * 10)]);
           }
 
-          resolve(pizzaToppings);
+          resolve(randomizedToppings);
         } else {
 
           if(toppingsAmount[1] === 'help') {
@@ -24,9 +24,9 @@ module.exports = {
               lisää ja sitten täytteen nimi.`);
           }
 
+          //TODO ADD FUNCTION TO ADD MORE TOPPINGS
           if(toppingsAmount[1] === 'lisää' && toppingsAmount.length >= 3) {
-            //pizzaUtils.addTopping(toppingsAmount[2]);
-            resolve("Ei oo viel lisätty tää toiminto");
+            resolve("Mussa ei vielä ole tätä toimintoa, kärsivällisyyttä plz");
 
           } else {
             reject('Mene töihin tai kirjota help komennon perään');

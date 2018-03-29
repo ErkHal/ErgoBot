@@ -7,6 +7,9 @@ Functionalities so far (PREFIX symbol needs to appended in front of the command)
  - ```safkaa``` Fetches cafeteria lunch menus at my campus
  - ```marco``` I bet you know what the bot will answer to this one
  - ```pizza {amount}``` Randomizes the amount of pizza toppings you want
+ - ```gif {searchword}``` Fetches a random GIF from Giphy.com with the provided
+                          searchword, if searchword is omitted, gets a completely
+                          random GIF
 
 ## Installation
 Clone the repository, navigate to root directory of the repo.
@@ -15,10 +18,11 @@ Create ```config.json``` file and paste this template to it:
 ```
   {
     "TOKEN": {TOKEN},
+    "GIPHY_KEY": {GIPHYKEY},
     "PREFIX": {PREFIX}
   }
 ```
-Replace the {TOKEN} with the Token the Discord Developer Portal provides you with.
+Replace the ```{TOKEN}``` and ```{GIPHYKEY}``` with an API token the Discord and Giphy.com Developer Portals provide you with.
 Change {PREFIX} to the prefix you want your commands to be preceded with, for example
 "!" or "~"
 
