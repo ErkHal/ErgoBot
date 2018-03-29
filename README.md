@@ -35,3 +35,8 @@ After this, you should be able to run the app from the command line with the com
 ```
   node bot.js
 ```
+
+### Notes about usage
+You can change the randomized pizza toppings from ```utils/pizzaToppings.json```
+I am planning to add functionality to add different toppings from discord, but
+it's not implemented yet.
