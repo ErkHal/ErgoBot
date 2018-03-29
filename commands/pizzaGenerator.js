@@ -32,7 +32,6 @@ module.exports = {
             reject('Mene töihin tai kirjota help komennon perään');
           }
         }
-
       } catch(err) {
         console.log(err);
         console.log(toppingsAmount[1]);
