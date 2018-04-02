@@ -11,10 +11,15 @@ module.exports = {
        "https://www.sodexo.fi/ruokalistat/output/daily_json/16435/"
         + today.getFullYear() + "/" + (today.getMonth() + 1) + "/"
         + today.getDate() + "/fi"
-        
+
       //Fetch lunch menu
       dataFetcher.fetchData(lunchURL)
         .then(( result ) => {
+
+          if(result.courses.length <= 1) {
+            resolve('Eipä löytyny menua tälle päivälle, väännä ite safkas');
+          }
+
             let menu = `
               \:stew: Tänään tarjolla @ ${result.meta.ref_title}  \:salad:
               `
@@ -22,6 +27,7 @@ module.exports = {
               menu +=
               `
               ${course.title_fi}
+              ${course.title_en}
               (${course.price.split('/')[0]})
               --------------------------------
               `
