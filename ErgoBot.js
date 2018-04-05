@@ -20,7 +20,11 @@ client.on('message', msg => {
     case PREFIX + 'safkaa':
       lunchMenu.buildMenu().then(( foodz ) => {
         msg.channel.send(foodz);
-      })
+      }).catch((err) => {
+        msg.reply(`
+          Ethän sä nyt voi olettaa että mä iha joka kerta toimisin, ethän ?`);
+      });
+
       break;
 
     // ( ͡° ͜ʖ ͡°)

@@ -1,5 +1,9 @@
 const dataFetcher = require('../utils/dataFetcher.js');
 
+const cleanMenuData = (menuData) => {
+
+}
+
 module.exports = {
   buildMenu : () => {
     return new Promise(function(resolve, reject) {
@@ -24,18 +28,27 @@ module.exports = {
               \:stew: Tänään tarjolla @ ${result.meta.ref_title}  \:salad:
               `
             result.courses.forEach( course => {
+
+              if(!course.title_en) {
+                course.title_en = "";
+              }
+              if(!course.title_fi) {
+                course.title_fi = "";
+              }
+
               menu +=
               `
               ${course.title_fi}
               ${course.title_en}
-              (${course.price.split('/')[0]})
+              ( ${course.price.split('/')[0]})
               --------------------------------
               `
             })
             resolve(menu);
           }).catch((err) => {
              console.log('Oops. Error while processing the lunch menu')
-              reject('OoPsiE WoOpSiE, i MaDe a fucKy WucKy !')
+             console.log(err);
+              reject(err);
          });
     });
   }
