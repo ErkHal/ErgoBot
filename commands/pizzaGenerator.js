@@ -9,19 +9,24 @@ module.exports = {
 
         let randomizedToppings = [];
 
-        if(intAmount <= 30 && intAmount > 0) {
-          for(let i = 0; i < intAmount; i++) {
-            randomizedToppings.push(pizza.toppings[Math.floor(Math.random() * 10)]);
+        if(intAmount <= (pizza.toppings.length) && intAmount > 0) {
+          let count = 0;
+          while (count < intAmount) {
+
+            randTopping = pizza.toppings[Math.floor(Math.random() * pizza.toppings.length)];
+
+            if(!randomizedToppings.includes(randTopping)) {
+            randomizedToppings.push(randTopping);
+            count++;
           }
+        }
 
           resolve(randomizedToppings);
         } else {
 
           if(toppingsAmount[1] === 'help') {
             resolve(`Arvon haluamasi määrän pizzan täytteitä,
-              mutta määrän pitää olla 1 - 30 väliltä.
-              Jos haluat lisätä lisää erilaisia täytteitä, kirjoita käskyn perään
-              lisää ja sitten täytteen nimi.`);
+              mutta määrän pitää olla 1 - ${pizza.toppings.length} väliltä. `);
           }
 
           //TODO ADD FUNCTION TO ADD MORE TOPPINGS
@@ -29,7 +34,7 @@ module.exports = {
             resolve("Mussa ei vielä ole tätä toimintoa, kärsivällisyyttä plz");
 
           } else {
-            reject('Mene töihin tai kirjota help komennon perään');
+            reject(`Pizzan täytteiden määrä pitää olla väliltä 1 - ${pizza.toppings.length}`);
           }
         }
       } catch(err) {
