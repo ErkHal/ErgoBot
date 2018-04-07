@@ -42,16 +42,20 @@ client.on('message', msg => {
 
     //Gets a random GIF either with optional searchword
     case PREFIX + 'gif':
-       gifs.getGif(message[1])
+      message.shift();
+       gifs.getGif(message.join(" "))
         .then(( gifJSON ) => {
+          if(gifJSON.data.embed_url === undefined) {
+            msg.channel.send('Iha paskoja hakusanoja sulla ku ei löydy mitää !');
+          } else {
           msg.channel.send(gifJSON.data.embed_url);
+        }
         }).catch((err) => {
           console.log(err);
           msg.channel.send('Nyt meni joku vituiks');
         });
       break;
     default:
-
   }
 });
 

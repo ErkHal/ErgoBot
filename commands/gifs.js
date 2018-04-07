@@ -6,6 +6,7 @@ module.exports = {
 
   getGif : (searchword = "") => {
     return new Promise((resolve, reject) => {
+      console.log("Fetching a gif that is about: " + searchword);
       let url = giphyURL + "&tag=" + searchword + "&rating=R";
       dataFetcher.fetchData(url)
         .then((gifJSON) => {

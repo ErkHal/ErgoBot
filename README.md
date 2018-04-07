@@ -7,13 +7,14 @@ Functionalities so far (PREFIX symbol needs to appended in front of the command)
  - ```safkaa``` Fetches cafeteria lunch menus at my campus
  - ```marco``` I bet you know what the bot will answer to this one
  - ```pizza {amount}``` Randomizes the amount of pizza toppings you want
- - ```gif {searchword}``` Fetches a random GIF from Giphy.com with the provided
+ - ```gif {searchword(s)}``` Fetches a random GIF from Giphy.com with the provided
                           searchword, if searchword is omitted, gets a completely
-                          random GIF
+                          random GIF. Can have multiple searchwords, just separate
+                          with spaces.
 
 ## Installation & How To Run
  - This bot requires that you have Node.js installed on your computer or on your server
- 
+
 ### Installation
 Clone the repository, navigate to root directory of the repo.
 
