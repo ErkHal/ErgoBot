@@ -1,55 +1,62 @@
 const dataFetcher = require('../utils/dataFetcher.js');
-
-const cleanMenuData = (menuData) => {
-
-}
+const RateLimiter = require('limiter').RateLimiter;
+const limiter = new RateLimiter(2, 'minute', true);
 
 module.exports = {
   buildMenu : () => {
     return new Promise(function(resolve, reject) {
 
-      //Get current date
-      const today = new Date();
+      limiter.removeTokens(1, (err, remainingRequests) => {
+        if(remainingRequests < 1) {
+          
+          resolve("Voit kutsua tätä komentoa vain kerran minuutissa");
+        
+        } else {
+            
+          //Get current date
+          const today = new Date();
 
-      const lunchURL =
-       "https://www.sodexo.fi/ruokalistat/output/daily_json/16435/"
-        + today.getFullYear() + "/" + (today.getMonth() + 1) + "/"
-        + today.getDate() + "/fi"
+          const lunchURL =
+          "https://www.sodexo.fi/ruokalistat/output/daily_json/16435/"
+            + today.getFullYear() + "/" + (today.getMonth() + 1) + "/"
+            + today.getDate() + "/fi"
 
-      //Fetch lunch menu
-      dataFetcher.fetchData(lunchURL)
-        .then(( result ) => {
+          //Fetch lunch menu
+          dataFetcher.fetchData(lunchURL)
+            .then(( result ) => {
 
-          if(result.courses.length <= 1) {
-            resolve('Eipä löytyny menua tälle päivälle, väännä ite safkas');
-          }
-
-            let menu = `
-              \:stew: Tänään tarjolla @ ${result.meta.ref_title}  \:salad:
-              `
-            result.courses.forEach( course => {
-
-              if(!course.title_en) {
-                course.title_en = "";
-              }
-              if(!course.title_fi) {
-                course.title_fi = "";
+              if(result.courses.length <= 1) {
+                resolve('Eipä löytyny menua tälle päivälle, väännä ite safkas');
               }
 
-              menu +=
-              `
-              ${course.title_fi}
-              ${course.title_en}
-              ( ${course.price.split('/')[0]})
-              --------------------------------
-              `
-            })
+                let menu = `
+                  \:stew: Tänään tarjolla @ ${result.meta.ref_title}  \:salad:
+                  `
+                result.courses.forEach( course => {
+
+                  if(!course.title_en) {
+                    course.title_en = "";
+                  }
+                  if(!course.title_fi) {
+                    course.title_fi = "";
+                  }
+
+                  menu +=
+                  `
+                  ${course.title_fi}
+                  ${course.title_en}
+                  ( ${course.price.split('/')[0]})
+                  --------------------------------
+                  `
+                })
             resolve(menu);
           }).catch((err) => {
              console.log('Oops. Error while processing the lunch menu')
              console.log(err);
               reject(err);
          });
+        }
+      });
     });
   }
 }
