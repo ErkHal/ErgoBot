@@ -34,18 +34,11 @@ module.exports = {
                   `
                 result.courses.forEach( course => {
 
-                  if(!course.title_en) {
-                    course.title_en = "";
-                  }
-                  if(!course.title_fi) {
-                    course.title_fi = "";
-                  }
-
                   menu +=
                   `
-                  ${course.title_fi}
-                  ${course.title_en}
-                  ( ${course.price.split('/')[0]})
+                  ${validate(course.title_fi)}
+                  ${validate(course.title_en)}
+                  ${validate(course.price)}
                   --------------------------------
                   `
                 })
@@ -58,5 +51,24 @@ module.exports = {
         }
       });
     });
+  }
+}
+
+/*
+
+ (╯°□°）╯︵ ┻━┻
+
+This fucking function has to exist just because people at a certain company
+cant output reliable data, that is sometimes even missing something very fucking
+relevant, such as the PRICE of the food.
+
+*/
+function validate(jsonEntry) {
+
+  console.log(jsonEntry);
+  if(jsonEntry == undefined) {
+    return ""
+  } else {
+    return jsonEntry
   }
 }
