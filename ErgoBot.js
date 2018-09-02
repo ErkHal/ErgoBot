@@ -7,12 +7,10 @@ const schedule = require('node-schedule')
 
 const { TOKEN, PREFIX } = require('./config');
 
-schedule.scheduleJob('30 10 * 1-5,8-12 1-5', printToLunchChannel())
-
 //This is a scheduled function to print out the cafeteria menu every Mo - Tue at 10:30am
 const printToLunchChannel = () => {
   lunchMenu.buildMenu().then( menu => {
-    client.channels.get(485714644980465674).send(menu)
+    client.channels.get("485714644980465674").send(menu)
   })
 }
 
@@ -28,13 +26,12 @@ client.on('message', msg => {
 
     // Get lunch menu for the cafeteria
     case PREFIX + 'safkaa':
-      printToLunchChannel()  
-    /**lunchMenu.buildMenu().then(( foodz ) => {
-        msg.channel.send(foodz);
-      }).catch((err) => {
-        msg.reply(`
-          Ethän sä nyt voi olettaa että mä iha joka kerta toimisin, ethän ?`);
-      });**/
+      lunchMenu.buildMenu().then(( foodz ) => {
+          msg.channel.send(foodz);
+        }).catch((err) => {
+          msg.reply(`
+            Ethän sä nyt voi olettaa että mä iha joka kerta toimisin, ethän ?`);
+        });
 
       break;
 
@@ -71,3 +68,4 @@ client.on('message', msg => {
 });
 
 client.login(TOKEN);
+schedule.scheduleJob('30 10 * 1-5,8-12 1-5', printToLunchChannel())
