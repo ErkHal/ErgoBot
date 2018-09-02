@@ -3,7 +3,7 @@ const client = new Discord.Client();
 const lunchMenu = require('./commands/lunchMenu');
 const pizzaGenerator = require('./commands/pizzaGenerator');
 const gifs = require('./commands/gifs');
-const schedule = require('schedule')
+const schedule = require('node-schedule')
 
 const { TOKEN, PREFIX } = require('./config');
 
