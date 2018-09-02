@@ -23,12 +23,14 @@ Create ```config.json``` file and paste this template to it:
   {
     "TOKEN": {TOKEN},
     "GIPHY_KEY": {GIPHYKEY},
-    "PREFIX": {PREFIX}
+    "PREFIX": {PREFIX},
+    "LUNCH_CHANNEL": {CHANNELID}
   }
 ```
 Replace the ```{TOKEN}``` and ```{GIPHYKEY}``` with an API token the Discord and Giphy.com Developer Portals provide you with.
 Change {PREFIX} to the prefix you want your commands to be preceded with, for example
 "!" or "~"
+Set {CHANNELID} to the channel that you want the automated lunch menus posted to. Make sure bots have permissions to post to that text channel !
 
 Then, open command line and type:
 ```
