@@ -68,4 +68,4 @@ client.on('message', msg => {
 });
 
 client.login(TOKEN);
-schedule.scheduleJob('30 10 * 1-5,8-12 1-5', printToLunchChannel())
+schedule.scheduleJob('30 10 * 1-5,8-12 1-5', printToLunchChannel)
