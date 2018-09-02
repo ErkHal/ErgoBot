@@ -5,12 +5,12 @@ const pizzaGenerator = require('./commands/pizzaGenerator');
 const gifs = require('./commands/gifs');
 const schedule = require('node-schedule')
 
-const { TOKEN, PREFIX } = require('./config');
+const { TOKEN, PREFIX, LUNCH_CHANNEL } = require('./config');
 
 //This is a scheduled function to print out the cafeteria menu every Mo - Tue at 10:30am
 const printToLunchChannel = () => {
   lunchMenu.buildMenu().then( menu => {
-    client.channels.get("485714644980465674").send(menu)
+    client.channels.get(LUNCH_CHANNEL).send(menu)
   })
 }
 
