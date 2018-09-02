@@ -3,8 +3,18 @@ const client = new Discord.Client();
 const lunchMenu = require('./commands/lunchMenu');
 const pizzaGenerator = require('./commands/pizzaGenerator');
 const gifs = require('./commands/gifs');
+const schedule = require('schedule')
 
 const { TOKEN, PREFIX } = require('./config');
+
+schedule.scheduleJob('30 10 * 1-5,8-12 1-5', printToLunchChannel())
+
+//This is a scheduled function to print out the cafeteria menu every Mo - Tue at 10:30am
+const printToLunchChannel = () => {
+  lunchMenu.buildMenu().then( menu => {
+    client.channels.get(485714644980465674).send(menu)
+  })
+}
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
@@ -18,12 +28,13 @@ client.on('message', msg => {
 
     // Get lunch menu for the cafeteria
     case PREFIX + 'safkaa':
-      lunchMenu.buildMenu().then(( foodz ) => {
+      printToLunchChannel()  
+    /**lunchMenu.buildMenu().then(( foodz ) => {
         msg.channel.send(foodz);
       }).catch((err) => {
         msg.reply(`
           Ethän sä nyt voi olettaa että mä iha joka kerta toimisin, ethän ?`);
-      });
+      });**/
 
       break;
 

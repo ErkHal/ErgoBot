@@ -30,7 +30,7 @@ module.exports = {
               }
 
                 let menu = `
-                  \:stew: Tänään tarjolla @ ${result.meta.ref_title}  \:salad:
+                  \:stew: Tänään tarjolla @ ${validate(result.meta.ref_title)}  \:salad:
                   `
                 result.courses.forEach( course => {
 
