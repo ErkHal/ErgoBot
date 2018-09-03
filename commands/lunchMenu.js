@@ -20,7 +20,7 @@ module.exports = {
           }
 
             let menu = `
-              \:stew: ${today} @ ${validate(result.meta.ref_title)}  \:salad:
+              \:stew: ${getLocaleStringForInt(today.getDate())}/${getLocaleStringForInt((today.getMonth() + 1))}/${today.getFullYear()} @ ${validate(result.meta.ref_title)}  \:salad:
               `
             result.courses.forEach( course => {
               menu +=
@@ -58,4 +58,8 @@ function validate(jsonEntry) {
   } else {
     return jsonEntry
   }
+}
+
+function getLocaleStringForInt(number) {
+  return number.toLocaleString(undefined, {minimumIntegerDigits: 2})
 }
