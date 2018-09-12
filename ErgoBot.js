@@ -24,17 +24,6 @@ client.on('message', msg => {
 
   switch (message[0]) {
 
-    // Get lunch menu for the cafeteria
-    case PREFIX + 'safkaa':
-      lunchMenu.buildMenu().then(( foodz ) => {
-          msg.channel.send(foodz);
-        }).catch((err) => {
-          msg.reply(`
-            Ethän sä nyt voi olettaa että mä iha joka kerta toimisin, ethän ?`);
-        });
-
-      break;
-
     // ( ͡° ͜ʖ ͡°)
     case PREFIX + 'marco':
       msg.reply('Polo');
